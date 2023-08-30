@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $featuredProducts = Product::orderBy('id')->take(6)->get();
+        $featuredProducts = Product::inRandomOrder()->take(6)->get();
         $featuredForms = Form::orderBy('id')->take(5)->get();
 
         return view('dashboard', [
@@ -25,7 +25,8 @@ class HomeController extends Controller
         ]);
     }
 
-    // Add
+    // To modify and add to principal page...
+
     public function product($idproduct)
     {
         $product = Product::find($idproduct);
@@ -38,11 +39,10 @@ class HomeController extends Controller
         ]);
     }
 
-    //Add
+    //To modify
+
     public function productByCategory($category)
     {
-        $categories = Category::all();
-
         // Obtiene una categoria
         $category = Category::where('name', '=', $category)->first();
 
@@ -52,7 +52,7 @@ class HomeController extends Controller
         // Obtiene todos los productos de esa categoria
         $products = Product::where('category_id', '=', $categoryIdSelected)->get();
         return view('posts', [
-            'categories' => $categories,
+            'categories' => Category::all(),
             'products' => $products, //concatenado a la variable
             'categoryIdSelected' => $categoryIdSelected
         ]);

@@ -14,7 +14,6 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->get('search');
 
         return view('products.index', [
             'products' => Product::latest()->paginate(5),
@@ -84,15 +83,12 @@ class ProductController extends Controller
 
         $updateproduct->save();
 
-        return redirect(route('products.index'))->with('status', 'product-created');
+        return redirect(route('products.index'))->with('status', 'product-updated');
     }
 
-    public function destroy(Product $product, $idproduct)
+    public function destroy(Product $product)
     {
-        $product = Product::find($idproduct);
-
         $product->delete();
-
-        return redirect(route('products.index'));
+        return redirect(route('products.index'))->with('status', 'product-deleted');
     }
 }

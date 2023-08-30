@@ -6,7 +6,7 @@
     "Password": "Contraseña",
     "Remember me": "Recuérdame",
     "Log in": "Acceder",
-    "Register": "Registro",
+    "Register": "Registrarse",
     "Forgot your password?": "¿Olvidaste tu contraseña?",
     "Already registered?": "¿Ya estás registrado?",
     "Dashboard": "Inicio",
@@ -66,5 +66,10 @@
     "Add Categories": "Agregar Categorias",
     "Cancel": "Cancelar",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": 
-    "¿Olvidaste tu contraseña? Ningún problema. Simplemente háganos saber su dirección de correo electrónico y le enviaremos un enlace de restablecimiento de contraseña que le permitirá elegir una nueva."
+    "¿Olvidaste tu contraseña? Ningún problema. Simplemente háganos saber su dirección de correo electrónico y le enviaremos un enlace de restablecimiento de contraseña que le permitirá elegir una nueva.",
+    "All Rights Reserved.": "Todos los derechos reservados.",
+    "Showing": "Mostrando",
+    "to": "a",
+    "of": "de",
+    "results": "resultados"
 }

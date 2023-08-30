@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Form;
 use Illuminate\Http\Request;
 
-class FormController extends Controller
+class PrincipalController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('forms.index', [
-            'forms' => Form::oldest()->paginate(3),
-        ]);
+        //
     }
 
     /**
@@ -30,20 +27,13 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        //Add Validation
-
-        $form = new Form;
-        $form->name = $request->name;
-        $form->email = $request->email;
-        $form->save();
-
-        return redirect()->back()->with('success', 'form-store');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Form $form)
+    public function show(string $id)
     {
         //
     }
@@ -51,7 +41,7 @@ class FormController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Form $form)
+    public function edit(string $id)
     {
         //
     }
@@ -59,7 +49,7 @@ class FormController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Form $form)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -67,7 +57,7 @@ class FormController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Form $form)
+    public function destroy(string $id)
     {
         //
     }

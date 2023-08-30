@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FormController;
@@ -11,18 +12,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('store', function () {
+    return view('principal.index');
+});
+
+Route::get('about-us', function () {
+    return view('principal.about-us');
+});
+
+// Route::post('/form', FormController::class, 'store')->name('form.store');
+
+
 
 Route::resource('dashboard', HomeController::class)
-->only(['index'])
-->middleware(['auth','verified']);
+    ->only(['index'])
+    ->middleware(['auth', 'verified']);
 
 Route::resource('categories', CategoryController::class)
-->only(['index', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'verified']);
+    ->only(['index', 'store', 'edit', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
 
 Route::resource('products', ProductController::class)
-->only(['index', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'verified']);
+    ->only(['index', 'show', 'store', 'edit', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
 
 // Add Clients Route
 Route::get('clients', function () {
@@ -40,4 +52,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
