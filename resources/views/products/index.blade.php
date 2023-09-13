@@ -61,6 +61,11 @@
             <x-input-error :messages="$errors->get('state')" class="mt-2" />
 
             <!-- Image -->
+            <div class="mt-2 flex justify-center rounded-lg border">
+                <img id="view_image" class="h-32 w-h-32 object-cover object-center">
+            </div>
+
+            <!-- Image -->
             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div class="text-center">
                   <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -89,6 +94,14 @@
                             x-init="setTimeout(() => show = false, 2000)"
                             class="text-sm text-green-600"
                         >{{ __('Product created successfully.') }}</p>
+                    @elseif (session('status') === 'product-updated')
+                        <p
+                        x-data="{ show: true }"
+                        x-show="show"
+                        x-transition
+                        x-init="setTimeout(() => show = false, 2000)"
+                        class="text-sm text-green-600"
+                        >{{ __('Product updated successfully.') }}</p> 
                     @endif
                 </div>
                 <x-primary-button class="ml-4 mt-4">{{ __("Add") }}</x-primary-button>
@@ -106,7 +119,6 @@
                             <tr class="bg-yellow-300 text-black uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left">{{ __("Name") }}</th>
                                 <th class="py-3 px-6 text-left">{{ __("Description") }}</th>
-                                <th class="py-3 px-6 text-left">{{ __("Updated At") }}</th>
                                 <th class="py-3 px-6 text-left">{{ __("Category") }}</th>
                                 <th class="py-3 px-6 text-center">{{ __("Price") }}</th>
                                 <th class="py-3 px-6 text-center">{{ __("State") }}</th>
@@ -126,11 +138,6 @@
                                     <td class="py-3 px-6 text-left">
                                         <div class="flex items-center">
                                             <span>{{$product->description}}</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-6 text-left">
-                                        <div class="flex items-center">
-                                            <span>{{$product->created_at->diffForHumans()}}</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-6 text-left">
@@ -159,20 +166,24 @@
                                                     </svg>
                                                 </div>
                                             </a>
-                                            <a href="#">
+                                            <a href="{{ route('products.edit', $product) }}">
                                                 <div class="w-4 mr-2 transform hover:text-gray-500 hover:scale-110">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                     </svg>
                                                 </div>
                                             </a>
-                                            <a href="#">
-                                                <div class="w-4 mr-2 transform hover:text-gray-500 hover:scale-110">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                    </svg>
-                                                </div>
-                                            </a>
+                                            <form method="POST" action="{{ route('products.destroy', $product) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" role="button">
+                                                    <div class="w-4 mr-2 transform hover:text-gray-500 hover:scale-110">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                        </svg>
+                                                    </div>
+                                                </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -187,7 +198,7 @@
                             @endif
                         </table>
                         <!-- Pagination -->
-                    @if ($products->count() >= 5) 
+                    @if ($products->count() > 0) 
                     <div class="p-4">
                         {{$products->links('components.pagination-tailwind')}}
                     </div>
@@ -197,3 +208,18 @@
         </div>
     </div>
 </x-app-layout>
+
+
+<!-- Script para ver la imagen antes de CREAR UN NUEVO PRODUCTO -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function (e) {
+        $('#image').change(function(){
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#view_image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>

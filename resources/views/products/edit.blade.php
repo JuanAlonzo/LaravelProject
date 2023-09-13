@@ -56,6 +56,11 @@
             <x-input-error :messages="$errors->get('state')" class="mt-2" />
 
             <!-- Image -->
+            <div class="mt-2 flex justify-center rounded-lg border">
+              <img id="view_image" class="h-32 w-h-32 object-cover object-center">
+            </div>
+            
+              <!-- Image -->
             <img class="border rounded mt-3" src="{{ asset($product->image) }}" alt="{{$product->name}}" width="150" height="150">
             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div class="text-center">
@@ -74,21 +79,22 @@
                 </div>
               </div>
               <x-input-error :messages="$errors->get('image')" class="mt-2" />
-
-            <div class="flex items-center">
-                <div class="flex-grow">
-                    @if (session('status') === 'product-created')
-                        <p
-                            x-data="{ show: true }"
-                            x-show="show"
-                            x-transition
-                            x-init="setTimeout(() => show = false, 2000)"
-                            class="text-sm text-green-600"
-                        >{{ __('Product created successfully.') }}</p>
-                    @endif
-                </div>
-                <x-primary-button class="ml-4 mt-4">{{ __("Add") }}</x-primary-button>
+                <x-primary-button class="ml-4 mt-4">{{ __("Update") }}</x-primary-button>
             </div>
         </form>
     </div>
 </x-app-layout>
+
+<!-- Script para ver la imagen antes de CREAR UN NUEVO PRODUCTO -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function (e) {
+        $('#image').change(function(){
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#view_image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>

@@ -1,4 +1,7 @@
-<section class="max-w-2xl mx-auto">
+<section class="max-w-4xl mx-auto">
+  <div>
+    <p class="leading-6 font-bold text-xl mb-3"> {{ __('See the principal categories') }} </p>
+  </div>
     @if (isset($categories))
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 gap-4">
         @foreach ($categories as $category)
@@ -9,6 +12,9 @@
             </div>
           </div>
         @endforeach
+      </div>
+      <div class="mt-6 flex justify-end">
+        <x-primary-button>{{ __('See more categories') }}</x-primary-button>
       </div>
     @endif
 </section>

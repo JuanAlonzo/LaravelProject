@@ -27,15 +27,14 @@
                         class="text-sm text-gray-600"
                     >{{ __('Saved.') }}</p>
                 @endif
+                <!-- Arreglar esta seccion -->
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
             </div>
         </form>
-
-        <!-- Arreglar esta seccion -->
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
 
         @if ($categories->count() > 0)
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
@@ -81,7 +80,7 @@
                     </div>
                 </div>
             @endforeach
-            @if ($categories->count() >= 7)
+            @if ($categories->count() > 0)
             <div class="p-4">
                 {{ $categories->links("components.pagination-simple-tailwind") }}
             </div>

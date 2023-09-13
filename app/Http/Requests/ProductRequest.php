@@ -22,4 +22,20 @@ class ProductRequest extends FormRequest
             'image' => 'image|max:2048',
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => 'nombre',
+            'price' => 'precio'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Se requiere el campo nombre',
+            'price.numeric' => 'Ingresa un numero'
+        ];
+    }
 }
