@@ -8,7 +8,7 @@
         <meta name="description" content="esta es la pagina principal del centro">
         <meta name="keywords" content="ensenada">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>SUMAQ Market</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

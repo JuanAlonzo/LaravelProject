@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.slider_wrapper{
+    padding: 2vh 0;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.splide__arrow{
+    opacity: 1;
+    /* width: 2rem; */
+    /* height: 2rem; */
+    background: rgba(255, 211, 30, 0.8);
+}
+
+.splide__pagination{
+    bottom: -2rem;
+}
+
+.splide__slide{
+    width: 100%;
+}
+
+.slider_wrapper .splide__pagination__page.is-active{
+    opacity: 1;
+    background: #fed558;
+}
+
+.splide__slide img{
+    width: 100%;
+    height: auto;
+}

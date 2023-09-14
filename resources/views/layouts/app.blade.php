@@ -8,7 +8,7 @@
         <meta name="description" content="esta es la pagina principal del centro">
         <meta name="keywords" content="ensenada">
 
-        <title>{{ __('Dashboard') }}</title>
+        <title>{{('Dashboard')}}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

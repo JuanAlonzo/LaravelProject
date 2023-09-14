@@ -30,14 +30,7 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        //Add Validation
-
-        $form = new Form;
-        $form->name = $request->name;
-        $form->email = $request->email;
-        $form->save();
-
-        return redirect()->back()->with('success', 'form-store');
+        //
     }
 
     /**

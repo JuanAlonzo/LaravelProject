@@ -17,6 +17,7 @@
         @endforeach
     </div>
     <div class="mt-6 flex justify-end">
+      <form action="{{ route('forms.index') }}"></form>
       <x-primary-button>{{ __('See more ...') }}</x-primary-button>
     </div>
   </div>
